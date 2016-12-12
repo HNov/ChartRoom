@@ -1,0 +1,7 @@
+E:\个人文件\Nov\项目\NovProject\双工通讯项目\Socket\ChartRoom\NovChartRoom\SocketClient\bin\Debug\SocketClient.exe
+E:\个人文件\Nov\项目\NovProject\双工通讯项目\Socket\ChartRoom\NovChartRoom\SocketClient\bin\Debug\SocketClient.pdb
+E:\个人文件\Nov\项目\NovProject\双工通讯项目\Socket\ChartRoom\NovChartRoom\SocketClient\obj\Debug\SocketClient.csprojResolveAssemblyReference.cache
+E:\个人文件\Nov\项目\NovProject\双工通讯项目\Socket\ChartRoom\NovChartRoom\SocketClient\obj\Debug\SocketClient.Properties.Resources.resources
+E:\个人文件\Nov\项目\NovProject\双工通讯项目\Socket\ChartRoom\NovChartRoom\SocketClient\obj\Debug\SocketClient.csproj.GenerateResource.Cache
+E:\个人文件\Nov\项目\NovProject\双工通讯项目\Socket\ChartRoom\NovChartRoom\SocketClient\obj\Debug\SocketClient.exe
+E:\个人文件\Nov\项目\NovProject\双工通讯项目\Socket\ChartRoom\NovChartRoom\SocketClient\obj\Debug\SocketClient.pdb

@@ -1,0 +1,14 @@
+E:\个人文件\Nov\项目\NovProject\双工通讯项目\Socket\ChartRoom\ChartRoom\SocketServer\obj\Debug\SocketServer.Properties.Resources.resources
+E:\个人文件\Nov\项目\NovProject\双工通讯项目\Socket\ChartRoom\ChartRoom\SocketServer\obj\Debug\SocketServer.csproj.GenerateResource.Cache
+E:\个人文件\Nov\项目\NovProject\双工通讯项目\Socket\ChartRoom\ChartRoom\SocketServer\obj\Debug\SocketServer.mainServer.resources
+E:\个人文件\Nov\项目\NovProject\双工通讯项目\Socket\ChartRoom\ChartRoom\SocketServer\bin\Debug\SocketServer.exe
+E:\个人文件\Nov\项目\NovProject\双工通讯项目\Socket\ChartRoom\ChartRoom\SocketServer\bin\Debug\SocketServer.pdb
+E:\个人文件\Nov\项目\NovProject\双工通讯项目\Socket\ChartRoom\ChartRoom\SocketServer\obj\Debug\SocketServer.exe
+E:\个人文件\Nov\项目\NovProject\双工通讯项目\Socket\ChartRoom\ChartRoom\SocketServer\obj\Debug\SocketServer.pdb
+E:\个人文件\Nov\项目\NovProject\双工通讯项目\Socket\ChartRoom\SocketServer\obj\Debug\SocketServer.exe
+E:\个人文件\Nov\项目\NovProject\双工通讯项目\Socket\ChartRoom\SocketServer\obj\Debug\SocketServer.pdb
+E:\个人文件\Nov\项目\NovProject\双工通讯项目\Socket\ChartRoom\SocketServer\bin\Debug\SocketServer.exe
+E:\个人文件\Nov\项目\NovProject\双工通讯项目\Socket\ChartRoom\SocketServer\bin\Debug\SocketServer.pdb
+E:\个人文件\Nov\项目\NovProject\双工通讯项目\Socket\ChartRoom\SocketServer\obj\Debug\SocketServer.mainServer.resources
+E:\个人文件\Nov\项目\NovProject\双工通讯项目\Socket\ChartRoom\SocketServer\obj\Debug\SocketServer.Properties.Resources.resources
+E:\个人文件\Nov\项目\NovProject\双工通讯项目\Socket\ChartRoom\SocketServer\obj\Debug\SocketServer.csproj.GenerateResource.Cache
