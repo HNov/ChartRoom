@@ -6,3 +6,8 @@ E:\个人文件\Nov\项目\NovProject\双工通讯项目\Socket\ChartRoom\Common
 E:\个人文件\Nov\项目\NovProject\双工通讯项目\Socket\ChartRoom\Common\bin\Debug\Common.pdb
 E:\个人文件\Nov\项目\NovProject\双工通讯项目\Socket\ChartRoom\Common\obj\Debug\Common.dll
 E:\个人文件\Nov\项目\NovProject\双工通讯项目\Socket\ChartRoom\Common\obj\Debug\Common.pdb
+E:\个人文件\Git\ChartRoom\ChartRoom\Common\bin\Debug\Common.dll
+E:\个人文件\Git\ChartRoom\ChartRoom\Common\bin\Debug\Common.pdb
+E:\个人文件\Git\ChartRoom\ChartRoom\Common\obj\Debug\SocketCommon.csprojResolveAssemblyReference.cache
+E:\个人文件\Git\ChartRoom\ChartRoom\Common\obj\Debug\Common.dll
+E:\个人文件\Git\ChartRoom\ChartRoom\Common\obj\Debug\Common.pdb
