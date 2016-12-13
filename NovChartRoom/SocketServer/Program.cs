@@ -7,7 +7,7 @@ namespace SocketServer
 {
     static class Program
     {
-        /// <summary>
+        /// <summary> 
         /// 应用程序的主入口点。
         /// </summary>
         [STAThread] 
