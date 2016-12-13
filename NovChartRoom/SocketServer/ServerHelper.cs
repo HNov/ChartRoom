@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 
 namespace SocketServer
@@ -25,9 +26,9 @@ namespace SocketServer
             get
             {
                 IList<string> list = new List<string>();
-                if (CoontSockets != null)
+                if (ConnSockets != null)
                 {
-                    CoontSockets.Keys.CopyTo(list.ToArray(), 0);
+                    ConnSockets.Keys.CopyTo(list.ToArray(), 0);
                     return list;
                 }
                 else return list;
@@ -35,11 +36,19 @@ namespace SocketServer
         }
         #endregion
 
+        #region 监听Socket
+        /// <summary>
+        /// 监听Socket
+        /// </summary>
+        public static Socket ListenSocket;
+        #endregion
+
+
         #region 当前链接的Socket
         /// <summary>
         /// 当前链接的Socket
         /// </summary>
-        public static Hashtable CoontSockets { get; set; }
+        public static Hashtable ConnSockets { get; set; }
         #endregion
 
 
