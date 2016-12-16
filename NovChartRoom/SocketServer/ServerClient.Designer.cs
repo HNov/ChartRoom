@@ -30,23 +30,23 @@
         {
             this.tbIP = new System.Windows.Forms.TextBox();
             this.dgvList = new System.Windows.Forms.DataGridView();
+            this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LoginDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox = new System.Windows.Forms.GroupBox();
+            this.lbStarteTine = new System.Windows.Forms.Label();
+            this.lbCount = new System.Windows.Forms.Label();
+            this.lbPoint = new System.Windows.Forms.Label();
+            this.lbIP = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.lable2 = new System.Windows.Forms.Label();
             this.lable3 = new System.Windows.Forms.Label();
             this.tbPoint = new System.Windows.Forms.TextBox();
             this.btnOpen = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.lbMsg = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.lbStarteTine = new System.Windows.Forms.Label();
-            this.lbCount = new System.Windows.Forms.Label();
-            this.lbPoint = new System.Windows.Forms.Label();
-            this.lbIP = new System.Windows.Forms.Label();
-            this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LoginDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvList)).BeginInit();
             this.groupBox.SuspendLayout();
             this.SuspendLayout();
@@ -57,6 +57,7 @@
             this.tbIP.Name = "tbIP";
             this.tbIP.Size = new System.Drawing.Size(162, 21);
             this.tbIP.TabIndex = 0;
+            this.tbIP.Text = "127.0.0.1";
             // 
             // dgvList
             // 
@@ -70,6 +71,16 @@
             this.dgvList.RowTemplate.Height = 23;
             this.dgvList.Size = new System.Drawing.Size(522, 161);
             this.dgvList.TabIndex = 1;
+            // 
+            // Address
+            // 
+            this.Address.HeaderText = "地址";
+            this.Address.Name = "Address";
+            // 
+            // LoginDate
+            // 
+            this.LoginDate.HeaderText = "登录时间";
+            this.LoginDate.Name = "LoginDate";
             // 
             // groupBox
             // 
@@ -87,93 +98,6 @@
             this.groupBox.TabIndex = 2;
             this.groupBox.TabStop = false;
             this.groupBox.Text = "服务信息";
-            // 
-            // lable2
-            // 
-            this.lable2.AutoSize = true;
-            this.lable2.Location = new System.Drawing.Point(31, 310);
-            this.lable2.Name = "lable2";
-            this.lable2.Size = new System.Drawing.Size(29, 12);
-            this.lable2.TabIndex = 3;
-            this.lable2.Text = "IP：";
-            // 
-            // lable3
-            // 
-            this.lable3.AutoSize = true;
-            this.lable3.Location = new System.Drawing.Point(235, 310);
-            this.lable3.Name = "lable3";
-            this.lable3.Size = new System.Drawing.Size(53, 12);
-            this.lable3.TabIndex = 5;
-            this.lable3.Text = "端口号：";
-            // 
-            // tbPoint
-            // 
-            this.tbPoint.Location = new System.Drawing.Point(294, 307);
-            this.tbPoint.Name = "tbPoint";
-            this.tbPoint.Size = new System.Drawing.Size(69, 21);
-            this.tbPoint.TabIndex = 4;
-            // 
-            // btnOpen
-            // 
-            this.btnOpen.Location = new System.Drawing.Point(379, 307);
-            this.btnOpen.Name = "btnOpen";
-            this.btnOpen.Size = new System.Drawing.Size(75, 23);
-            this.btnOpen.TabIndex = 6;
-            this.btnOpen.Text = "开启服务";
-            this.btnOpen.UseVisualStyleBackColor = true;
-            // 
-            // btnClose
-            // 
-            this.btnClose.Location = new System.Drawing.Point(460, 307);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(75, 23);
-            this.btnClose.TabIndex = 7;
-            this.btnClose.Text = "关闭服务";
-            this.btnClose.UseVisualStyleBackColor = true;
-            // 
-            // lbMsg
-            // 
-            this.lbMsg.AutoSize = true;
-            this.lbMsg.Location = new System.Drawing.Point(31, 339);
-            this.lbMsg.Name = "lbMsg";
-            this.lbMsg.Size = new System.Drawing.Size(0, 12);
-            this.lbMsg.TabIndex = 8;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(20, 21);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(29, 12);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "IP：";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(20, 43);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 12);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "端口号：";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(20, 69);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(65, 12);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "在线人数：";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(20, 93);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(65, 12);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "启动时间：";
             // 
             // lbStarteTine
             // 
@@ -209,15 +133,93 @@
             this.lbIP.Size = new System.Drawing.Size(0, 12);
             this.lbIP.TabIndex = 4;
             // 
-            // Address
+            // label4
             // 
-            this.Address.HeaderText = "地址";
-            this.Address.Name = "Address";
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(20, 93);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(65, 12);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "启动时间：";
             // 
-            // LoginDate
+            // label3
             // 
-            this.LoginDate.HeaderText = "登录时间";
-            this.LoginDate.Name = "LoginDate";
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(20, 69);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(65, 12);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "在线人数：";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(20, 43);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(53, 12);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "端口号：";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(20, 21);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(29, 12);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "IP：";
+            // 
+            // lable2
+            // 
+            this.lable2.AutoSize = true;
+            this.lable2.Location = new System.Drawing.Point(31, 310);
+            this.lable2.Name = "lable2";
+            this.lable2.Size = new System.Drawing.Size(29, 12);
+            this.lable2.TabIndex = 3;
+            this.lable2.Text = "IP：";
+            // 
+            // lable3
+            // 
+            this.lable3.AutoSize = true;
+            this.lable3.Location = new System.Drawing.Point(235, 310);
+            this.lable3.Name = "lable3";
+            this.lable3.Size = new System.Drawing.Size(53, 12);
+            this.lable3.TabIndex = 5;
+            this.lable3.Text = "端口号：";
+            // 
+            // tbPoint
+            // 
+            this.tbPoint.Location = new System.Drawing.Point(294, 307);
+            this.tbPoint.Name = "tbPoint";
+            this.tbPoint.Size = new System.Drawing.Size(69, 21);
+            this.tbPoint.TabIndex = 4;
+            this.tbPoint.Text = "50134";
+            // 
+            // btnOpen
+            // 
+            this.btnOpen.Location = new System.Drawing.Point(379, 307);
+            this.btnOpen.Name = "btnOpen";
+            this.btnOpen.Size = new System.Drawing.Size(75, 23);
+            this.btnOpen.TabIndex = 6;
+            this.btnOpen.Text = "开启服务";
+            this.btnOpen.UseVisualStyleBackColor = true;
+            // 
+            // btnClose
+            // 
+            this.btnClose.Location = new System.Drawing.Point(460, 307);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(75, 23);
+            this.btnClose.TabIndex = 7;
+            this.btnClose.Text = "关闭服务";
+            this.btnClose.UseVisualStyleBackColor = true;
+            // 
+            // lbMsg
+            // 
+            this.lbMsg.AutoSize = true;
+            this.lbMsg.Location = new System.Drawing.Point(31, 339);
+            this.lbMsg.Name = "lbMsg";
+            this.lbMsg.Size = new System.Drawing.Size(0, 12);
+            this.lbMsg.TabIndex = 8;
             // 
             // ServerClient
             // 

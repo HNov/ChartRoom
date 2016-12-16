@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -28,6 +29,7 @@ namespace SocketServer
         {
             InitializeComponent();
             Init();
+            StartServer();
         }
 
         #region 初始化
@@ -117,6 +119,7 @@ namespace SocketServer
         /// </summary>
         public void StartServer()
         {
+            ServerHelper.ConnSockets = new Dictionary<string, Socket>();
             this.IP = this.tbIP.Text.Trim();
             this.Point = this.tbPoint.Text.Trim();
             if (string.IsNullOrEmpty(IP) || string.IsNullOrEmpty(Point))
@@ -177,7 +180,6 @@ namespace SocketServer
             string ip = connSocket.RemoteEndPoint.ToString();
             if (!string.IsNullOrEmpty(ip) && !ServerHelper.IPList.Contains(ip))
             {
-                ServerHelper.IPList.Add(ip.Trim());
                 ServerHelper.ConnSockets.Add(ip, connSocket);
             }
             //再次开始监听
@@ -295,9 +297,9 @@ namespace SocketServer
         /// </summary>
         public void RefreshSocketList(Socket connSocket)
         {
-            if (!ServerHelper.ConnSockets.ContainsKey(connSocket.RemoteEndPoint))
+            if (!ServerHelper.ConnSockets.ContainsKey(connSocket.RemoteEndPoint.ToString()))
             {
-                ServerHelper.ConnSockets.Add(connSocket.RemoteEndPoint, connSocket);
+                ServerHelper.ConnSockets.Add(connSocket.RemoteEndPoint.ToString(), connSocket);
             }
         }
         #endregion
@@ -357,7 +359,7 @@ namespace SocketServer
                     //有人上线
                     //[命令(12)| ip(上线的ip)| ...]
                     list.Insert(0, 12);//说明有人上线
-                    item.Value.Send(list.ToArray());
+                    ((Socket)item.Value).Send(list.ToArray());
                 });
                 thread.IsBackground = true;
                 thread.Start();

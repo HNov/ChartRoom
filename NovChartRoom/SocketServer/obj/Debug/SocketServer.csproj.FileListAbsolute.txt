@@ -13,3 +13,4 @@ E:\个人文件\Git\ChartRoom\NovChartRoom\SocketServer\obj\Debug\SocketServer.e
 E:\个人文件\Git\ChartRoom\NovChartRoom\SocketServer\bin\Debug\SocketServer.exe
 E:\个人文件\Git\ChartRoom\NovChartRoom\SocketServer\bin\Debug\SocketServer.pdb
 E:\个人文件\Git\ChartRoom\NovChartRoom\SocketServer\obj\Debug\SocketServer.pdb
+E:\个人文件\Git\ChartRoom\NovChartRoom\SocketServer\obj\Debug\SocketServer.csprojResolveAssemblyReference.cache

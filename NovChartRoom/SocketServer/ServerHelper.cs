@@ -25,13 +25,13 @@ namespace SocketServer
         {
             get
             {
-                IList<string> list = new List<string>();
+                string[] arry = new string[ConnSockets.Keys.Count];
                 if (ConnSockets != null)
                 {
-                    ConnSockets.Keys.CopyTo(list.ToArray(), 0);
-                    return list;
+                    ConnSockets.Keys.CopyTo(arry, 0);
+                    return arry;
                 }
-                else return list;
+                else return arry;
             }
         }
         #endregion
@@ -48,7 +48,7 @@ namespace SocketServer
         /// <summary>
         /// 当前链接的Socket
         /// </summary>
-        public static Hashtable ConnSockets { get; set; }
+        public static Dictionary<string, Socket> ConnSockets { get; set; }
         #endregion
 
 

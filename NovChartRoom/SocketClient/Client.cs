@@ -49,29 +49,60 @@ namespace SocketClient
         }
         private void btnSend_Click(object sender, EventArgs e)
         {
-
+            //判断是否有选择用户
+            string sendUser = cbList.Text;
+            //获取聊天的内容
+            string content = tbContent.Text;
+            if (string.IsNullOrEmpty(sendUser))
+            {
+                tbHis.AppendText("请选择要发送的用户...\n");   //提示
+                return;
+            }
+            else if (string.IsNullOrEmpty(content))
+            {
+                tbHis.AppendText("你不打算输入点什么吗...\n");   //提示
+                return;
+            }
+            SendMsg(content);
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void btnOpen_Click(object sender, EventArgs e)
-        {
-
+            CloseClient();
         }
 
         private void btnSelete_Click(object sender, EventArgs e)
         {
-
+            SeleteFile();
         }
         private void btnDd_Click(object sender, EventArgs e)
         {
-
+            //判断是否有选择用户
+            string sendUser = cbList.Text;
+            if (string.IsNullOrEmpty(sendUser))
+            {
+                tbHis.AppendText("请选择要抖动的用户...\n");//提示
+                return;
+            }
+            SendDd();
         }
         private void btnSendFile_Click(object sender, EventArgs e)
         {
-
+            //判断是否有选择用户
+            string sendUser = cbList.Text;
+            if (string.IsNullOrEmpty(sendUser))
+            {
+                //提示
+                tbHis.AppendText("请选择要发送的用户...\n");
+                return;
+            }
+            //判断是否选择了文件
+            else if (string.IsNullOrEmpty(tbFile.Text))
+            {
+                tbHis.AppendText("请选择文件\n");
+                tbHis.AppendText("\n");
+                return;
+            }
+            SendFile();
         }
         #endregion
         #region 事件方法
@@ -103,9 +134,56 @@ namespace SocketClient
         /// <summary>
         /// 发送信息
         /// </summary>
-        public void SendMsg()
+        public void SendMsg(string content)
         {
+            try
+            {
+                //文字： ip设置最大值为 50 位
+                //[命令(1)|对方的ip和自己的ip 50位)| 内容(文字) | ...]
+                //这里把对方的ip放前面是为了在服务端好获取
+                //把自己的ip和对方的ip转为byte
 
+                //如果是独立电脑应该可以这样获取
+                //Common.connSocket.LocalEndPoint
+                //如果此处不发送自己的ip。那么也可以在服务端获取
+
+                string allIp = string.Format("{0},{1}", cbList.Text, myIp.Text);
+
+
+                byte[] sendIp = Encoding.UTF8.GetBytes(allIp);
+                byte[] buffer = Encoding.UTF8.GetBytes(content);
+
+                List<byte> list = sendIp.ToList();
+                list.Insert(0, 1);//添加协议位
+
+                //sendIp 不够50位
+                if (sendIp.Length < 50)
+                {
+                    for (int i = 0; i < 50 - sendIp.Length; i++)
+                    {
+                        list.Add(0);
+                    }
+                }
+
+                //把内容添加到末尾
+                list.AddRange(buffer);
+
+                //开始发送
+                SocketHelper.ConnSocket.Send(list.ToArray());
+                tbContent.Clear();
+
+                //把发送的内容显示在上面
+                tbHis.AppendText(string.Format("时间：{0}\n", DateTime.Now.ToString()));
+                tbHis.AppendText(string.Format("我对{0}说：\n", cbList.Text));
+                tbHis.AppendText(content + "\n");
+                tbHis.AppendText("\n");
+                //清空输入框
+                tbContent.Clear();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         #endregion
 
@@ -115,6 +193,13 @@ namespace SocketClient
         /// </summary>
         public void SeleteFile()
         {
+            OpenFileDialog ofd = new OpenFileDialog();
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                tbFile.Text = ofd.FileName;
+                //保存文件名和扩展名
+                SocketHelper.SafeFileName = ofd.SafeFileName;
+            }
         }
         #endregion
 
@@ -124,7 +209,51 @@ namespace SocketClient
         /// </summary>
         public void SendFile()
         {
+            //开始读取文件
+            using (FileStream fs = new FileStream(tbFile.Text, FileMode.Open, FileAccess.Read))
+            {
+                //大文件会内存溢出
+                //引发类型为“System.OutOfMemoryException”的异常。
+                //所以大文件只能 续传。像QQ一样在线接收的方式。
+                byte[] buffer = new byte[fs.Length];
+                //获取实际的字节数，如果有需要的话。
+                int num = fs.Read(buffer, 0, buffer.Length);
 
+                /*协议: 这里50位不知道是否理想？？
+                 * 是不是可以修改为：第一位 协议 第二位标记ip的长度 第三位标记内容的长度？？
+                 * [命令(0)| ip(对方的ip和自己的ip 50位)| 内容(文件大小和文件全名 30)|响应(文件内容) | ...]
+                 */
+                string allIp = string.Format("{0},{1}", cbList.Text, myIp.Text);
+                byte[] sendIp = Encoding.UTF8.GetBytes(allIp);
+
+                List<byte> list = sendIp.ToList();
+
+                //sendIp 不够50位
+                if (sendIp.Length < 50)
+                {
+                    for (int i = 0; i < 50 - sendIp.Length; i++)
+                    {
+                        list.Add(0);
+                    }
+                }
+                list.Insert(0, 0); //添加协议位
+                //添加内容
+                byte[] fileByte = Encoding.UTF8.GetBytes(SocketHelper.SafeFileName);
+                list.AddRange(fileByte);
+                //内容是否够30
+                if (fileByte.Length < 30)
+                {
+                    for (int i = 0; i < 30 - fileByte.Length; i++)
+                    {
+                        list.Add(0);
+                    }
+                }
+                //添加响应
+                list.AddRange(buffer);
+
+                //开始发送
+                SocketHelper.ConnSocket.Send(list.ToArray());
+            }
         }
         #endregion
 
@@ -134,7 +263,26 @@ namespace SocketClient
         /// </summary>
         public void SendDd()
         {
+            //协议
+            //震动
+            //[命令(2)| 对方的ip和自己的ip 50位| ...]
+            string allIp = string.Format("{0},{1}", cbList.Text, myIp.Text);
 
+            byte[] sendIp = Encoding.UTF8.GetBytes(allIp);
+
+            List<byte> list = sendIp.ToList();
+            list.Insert(0, 2);//添加协议位
+
+            //sendIp 不够50位
+            if (sendIp.Length < 50)
+            {
+                for (int i = 0; i < 50 - sendIp.Length; i++)
+                {
+                    list.Add(0);
+                }
+            }
+            //开始发送
+            SocketHelper.ConnSocket.Send(list.ToArray());
         }
         #endregion
 
