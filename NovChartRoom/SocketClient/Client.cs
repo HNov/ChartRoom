@@ -24,8 +24,7 @@ namespace SocketClient
         #region 初始化
         public void Init()
         {
-
-
+            InitEvent();
         }
 
 
