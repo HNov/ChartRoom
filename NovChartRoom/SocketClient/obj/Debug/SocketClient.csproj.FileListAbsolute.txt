@@ -12,3 +12,6 @@ E:\个人文件\Git\ChartRoom\NovChartRoom\SocketClient\bin\Debug\SocketClient.p
 E:\个人文件\Git\ChartRoom\NovChartRoom\SocketClient\obj\Debug\SocketClient.csprojResolveAssemblyReference.cache
 E:\个人文件\Git\ChartRoom\NovChartRoom\SocketClient\obj\Debug\SocketClient.Properties.Resources.resources
 E:\个人文件\Git\ChartRoom\NovChartRoom\SocketClient\obj\Debug\SocketClient.csproj.GenerateResource.Cache
+E:\个人文件\Git\ChartRoom\NovChartRoom\SocketClient\obj\Debug\SocketClient.Client.resources
+E:\个人文件\Git\ChartRoom\NovChartRoom\SocketClient\bin\Debug\SocketCommon.dll
+E:\个人文件\Git\ChartRoom\NovChartRoom\SocketClient\bin\Debug\SocketCommon.pdb

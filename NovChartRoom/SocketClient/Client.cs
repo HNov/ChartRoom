@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -90,7 +91,7 @@ namespace SocketClient
                 IPEndPoint point = new IPEndPoint(address, _point);
                 SocketHelper.ConnSocket.Connect(point);
                 //连接成功，获取服务器发来的消息
-                SocketHelper.ConnSocket.BeginReceive(SocketHelper.buffer, 0, SocketHelper.buffer.Length, 0, new AsyncCallback(Receive), SocketHelper.ConnSocket)
+                SocketHelper.ConnSocket.BeginReceive(SocketHelper.buffer, 0, SocketHelper.buffer.Length, 0, new AsyncCallback(Receive), SocketHelper.ConnSocket);
             }
             catch (Exception ex)
             {
@@ -180,25 +181,24 @@ namespace SocketClient
                     //说明是获取好友
                     if (command == 10)
                     {
-                        ReceiveFriends();
+                        ReceiveFriends(buffer,length);
                     }
                     else if (command == 11) //说明是有人下线
                     {
-                        FriendOffLine();
+                        FriendOffLine(buffer,length);
                     }
                     else if (command == 12) //有人上线了
                     {
-                        FriendOnLine();
+                        FriendOnLine(buffer,length);
                     }
-
                     //以下是客户端=》服务器==》客户端
                     else if (command == 1)
                     {
-                        DealMsg();
+                        DealMsg(buffer, length);
                     }
                     else if (command == 0) //发送的文件
                     {
-                        ReceiveFile();
+                        ReceiveFile(buffer, length);
                     }
                     else if (command == 2) //发送抖动
                     {
@@ -210,7 +210,6 @@ namespace SocketClient
             }
             catch (Exception ex)
             {
-
                 throw;
             }
         }
@@ -218,7 +217,7 @@ namespace SocketClient
 
         #region 回调方法
         #region 接收好友
-        public void ReceiveFriends()
+        public void ReceiveFriends(byte[] buffer,int length)
         {
             //协议说明
             //第一次登陆获取在线(好友)人数
@@ -228,19 +227,16 @@ namespace SocketClient
             //其实用户本地ip也可以这样获取
             //string cy = clientSocket.LocalEndPoint;
 
-            string allIp = Encoding.UTF8.GetString(buffer, 1, num - 1);
+            string allIp = Encoding.UTF8.GetString(buffer, 1, length - 1);
             string[] temp = allIp.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
             //跨线程操作UI
             this.Invoke(new Action(() =>
             {
                 myIp.Text = temp.Length > 0 ? temp[temp.Length - 1] : "";
-
                 //排除自己的ip
                 var other = from i in temp where !i.Contains(myIp.Text) select i;
-
                 cbList.Items.Clear();//清空
                 cbList.Items.AddRange(other.ToArray()); //绑定列表
-
                 if (cbList.Items.Count > 0)
                     cbList.SelectedIndex = 0;//默认选中第一个
             }));
@@ -248,14 +244,14 @@ namespace SocketClient
 
         #endregion
         #region 好友下线
-        public void FriendOffLine()
+        public void FriendOffLine(byte[] buffer,int length)
         {
             //协议说明
             // 有人下线
             //[命令(11)| ip(下线的ip)| ...]
 
             //获取下线的ip
-            string outIp = Encoding.UTF8.GetString(buffer, 1, num - 1);
+            string outIp = Encoding.UTF8.GetString(buffer, 1, length - 1);
 
             this.Invoke(new Action(() =>
             {
@@ -267,14 +263,14 @@ namespace SocketClient
         }
         #endregion
         #region 好友上线
-        public void FriendOnLine()
+        public void FriendOnLine(byte[] buffer,int length)
         {
             //协议说明
             // 有人上线
             //[命令(12)| ip(上线的ip)| ...]
 
             //获取上线的ip
-            string onlineIp = Encoding.UTF8.GetString(buffer, 1, num - 1);
+            string onlineIp = Encoding.UTF8.GetString(buffer, 1, length - 1);
             //添加上线的ip
 
             this.Invoke(new Action(() =>
@@ -287,7 +283,7 @@ namespace SocketClient
         }
         #endregion
         #region 处理消息
-        public void DealMsg()
+        public void DealMsg(byte[] buffer,int length)
         {
             //协议：
             //[命令(1)|对方的ip和自己的ip 50位)| 内容(文字) | ...]
@@ -297,7 +293,7 @@ namespace SocketClient
             //发消息来的ip
             string fromIp = sourceIp[1];
             //获取内容
-            string content = Encoding.UTF8.GetString(buffer, 50 + 1, num - 50 - 1);
+            string content = Encoding.UTF8.GetString(buffer, 50 + 1, length - 50 - 1);
             this.Invoke(new Action(() =>
             {
                 //列表框中选择当前的ip
@@ -341,7 +337,7 @@ namespace SocketClient
         /// <summary>
         /// 接收文件
         /// </summary>
-        public void ReceiveFile()
+        public void ReceiveFile(byte[] buffer,int length)
         {
             /*协议: 这里50位不知道是否理想。
                             * [命令(0)| ip(对方的ip和自己的ip 50位)| 内容(文件大小和文件全名 30位)|响应(文件内容) | ...]
@@ -385,7 +381,7 @@ namespace SocketClient
                 {
                     using (FileStream fs = new FileStream(sfd.FileName, FileMode.Create))
                     {
-                        fs.Write(buffer, 50 + 30 + 1, num - 50 - 30 - 1);
+                        fs.Write(buffer, 50 + 30 + 1, length - 50 - 30 - 1);
                     }
                 }
 
